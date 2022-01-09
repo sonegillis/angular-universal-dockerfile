@@ -48,8 +48,9 @@ RUN mkdir /home/apps
 WORKDIR /home/apps
 RUN git clone -b $GIT_BRANCH $GIT_REPO
 WORKDIR /home/apps/$PROJECT_DIR
-RUN node --max_old_space_size=102400 node_modules/@angular/cli/bin/ng build --prod
+
 RUN npm i
+RUN RUN node --max_old_space_size=102400 node_modules/@angular/cli/bin/ng build --prod
 RUN npm i -g pm2
 RUN npm run build:ssr
 RUN cp -r dist/weedstore-desktop/ /var/www/${DOMAIN_NAME}/
