@@ -48,8 +48,7 @@ RUN mkdir /home/apps
 WORKDIR /home/apps
 RUN git clone -b $GIT_BRANCH $GIT_REPO
 WORKDIR /home/apps/$PROJECT_DIR
-RUN ls
-RUN pwd
+RUN node --max_old_space_size=102400 node_modules/@angular/cli/bin/ng build --prod
 RUN npm i
 RUN npm i -g pm2
 RUN npm run build:ssr
