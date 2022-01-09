@@ -11,7 +11,7 @@ RUN apt-get update
 RUN apt-get -y install nginx && apt-get -y install git
 RUN apt-get -y install curl
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
-RUN apt -y install nodejs
+RUN apt-get -y install nodejs
 RUN node  -v
 RUN npm -v
 RUN npm install -g @angular/cli
