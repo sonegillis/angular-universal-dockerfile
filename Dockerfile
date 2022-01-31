@@ -49,7 +49,7 @@ WORKDIR /home/apps
 RUN git clone -b $GIT_BRANCH $GIT_REPO
 WORKDIR /home/apps/$PROJECT_DIR
 
-RUN npm i
+RUN npm ci
 RUN ng build --prod
 RUN npm i -g pm2
 RUN npm run build:ssr
