@@ -5,6 +5,7 @@ ARG DOMAIN_NAME
 ARG GIT_BRANCH=main
 ARG GIT_REPO
 ARG PROJECT_DIR
+ARG PROJECT_NAME
 ARG SSH_PRIVATE_KEY
 # install dependencies
 RUN apt-get update
@@ -36,6 +37,7 @@ RUN ssh-keyscan github.com >> root/.ssh/known_hosts
 
 COPY nginx.conf /etc/nginx/sites-available/${DOMAIN_NAME}/
 RUN sed -i "s/DOMAIN_NAME/${DOMAIN_NAME}/g" /etc/nginx/sites-available/${DOMAIN_NAME}/nginx.conf
+RUN sed -i "s/PROJECT_NAME/${PROJECT_NAME}/g" /etc/nginx/sites-available/${DOMAIN_NAME}/nginx.conf
 RUN cat /etc/nginx/sites-available/${DOMAIN_NAME}/nginx.conf
 RUN ln -s /etc/nginx/sites-available/${DOMAIN_NAME} /etc/nginx/sites-enabled
 RUN rm /etc/nginx/sites-enabled/default
@@ -53,9 +55,9 @@ RUN npm i
 RUN ng build --prod
 RUN npm i -g pm2
 RUN npm run build:ssr
-RUN cp -r dist/weedstore-desktop/ /var/www/${DOMAIN_NAME}/
+RUN cp -r dist/ /var/www/${DOMAIN_NAME}/
 
-WORKDIR /var/www/${DOMAIN_NAME}/server/
+WORKDIR /var/www/${DOMAIN_NAME}/
 EXPOSE 80
 EXPOSE 443
-ENTRYPOINT ["pm2-runtime", "start", "main.js", "/dev/null"]
+ENTRYPOINT ["pm2-runtime", "start", "dist/weedstore-desktop/server/main.js", "/dev/null"]
