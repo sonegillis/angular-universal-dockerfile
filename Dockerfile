@@ -55,9 +55,12 @@ RUN npm i
 RUN ng build --prod
 RUN npm i -g pm2
 RUN npm run build:ssr
-RUN cp -r dist/ /var/www/${DOMAIN_NAME}/
+
 
 WORKDIR /var/www/${DOMAIN_NAME}/
+RUN cp -r /home/apps/$PROJECT_DIR/dist/ /var/www/${DOMAIN_NAME}/
+
 EXPOSE 80
 EXPOSE 443
+EXPOSE 4000
 ENTRYPOINT ["pm2-runtime", "start", "dist/weedstore-desktop/server/main.js", "/dev/null"]
