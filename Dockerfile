@@ -20,7 +20,6 @@ WORKDIR /
 
 RUN echo ${SSH_PRIVATE_KEY}
 
-RUN 
 RUN mkdir /root/.ssh
 RUN pwd
 RUN touch /root/.ssh/id_rsa
