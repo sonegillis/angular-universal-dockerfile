@@ -33,10 +33,9 @@ RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
 # create a new user and add to www-data group
 RUN useradd -g www-data angular
 # clone django project
-RUN mkdir /home/apps
-WORKDIR /home/apps
-RUN git clone -b $GIT_BRANCH $GIT_REPO
+RUN mkdir /home/apps && mkdir /home/apps/${PROJECT_NAME}
 WORKDIR /home/apps/$PROJECT_NAME
+RUN git clone $GIT_REPO . -b $GIT_BRANCH
 RUN ls
 RUN npm i
 RUN ng build --prod
