@@ -1,0 +1,7 @@
+version: "3.7"
+services:
+  app:
+    environment:
+      - PROJECT_NAME=my-app
+      - CONTAINER_NAME=my-app
+    container_name: ${CONTAINER_NAME}
