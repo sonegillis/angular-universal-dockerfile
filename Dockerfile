@@ -23,7 +23,7 @@ RUN echo ${SSH_PRIVATE_KEY}
 RUN mkdir /root/.ssh
 RUN pwd
 RUN touch /root/.ssh/id_rsa
-RUN ecoh ${SSH_PRIVATE_KEY} > /root/.ssh/id_rsa
+RUN echo ${SSH_PRIVATE_KEY} > /root/.ssh/id_rsa
 RUN touch /root/.ssh/known_hosts
 RUN chmod 700 /root/.ssh/id_rsa
 
