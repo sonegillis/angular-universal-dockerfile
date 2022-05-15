@@ -37,7 +37,7 @@ RUN mkdir /home/apps
 WORKDIR /home/apps
 RUN git clone -b $GIT_BRANCH $GIT_REPO
 WORKDIR /home/apps/$PROJECT_NAME
-
+RUN ls
 RUN npm i
 RUN ng build --prod
 RUN npm i -g pm2
