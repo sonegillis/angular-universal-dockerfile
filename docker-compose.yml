@@ -6,7 +6,6 @@ services:
       args:
         - GIT_REPO=${GIT_REPO}
         - GIT_BRANCH=${GIT_BRANCH}
-        - SSH_PRIVATE_KEY=${SSH_PRIVATE_KEY}
         - PROJECT_NAME=${PROJECT_NAME}
     environment:
       - PROJECT_NAME=${PROJECT_NAME}
