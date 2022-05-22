@@ -8,7 +8,7 @@ services:
       - "traefik.http.routers.${APP_ID}-router.rule=Host(`${HOST}`)"
       - "traefik.http.routers.${APP_ID}-router.entrypoints=web"
       - "traefik.http.middlewares.${APP_ID}-redirect-middleware.redirectscheme.scheme=https"
-      - "traefik.http.routers.${APP_ID}-router.middleware=${APP_ID}-redirect-middleware"
+      - "traefik.http.routers.${APP_ID}-router.middlewares=${APP_ID}-redirect-middleware"
       - "traefik.http.routers.${APP_ID}-secure-router.rule=Host(`${HOST}`)"
       - "traefik.http.routers.${APP_ID}-secure-router.entrypoints=websecure"
       - "traefik.http.routers.${APP_ID}-secure-router.tls=true"
