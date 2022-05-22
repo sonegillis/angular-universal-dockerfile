@@ -10,7 +10,7 @@ services:
       - "traefik.http.middlewares.${APP_ID}-redirect-middleware.redirectscheme.scheme=https"
       - "traefik.http.routers.${APP_ID}-router.middleware=${APP_ID}-redirect-middleware"
       - "traefik.http.routers.${APP_ID}-secure-router.rule=Host(`${HOST}`)"
-      - "traefik.http.routers.${APP_ID}-secure-router.entrypoints=Host(`${HOST}`)"
+      - "traefik.http.routers.${APP_ID}-secure-router.entrypoints=websecure"
       - "traefik.http.routers.${APP_ID}-secure-router.tls=true"
       - "traefik.http.routers.${APP_ID}-secure-router.tls.certresolver=lets-encrypt"
       - "traefik.http.services.${APP_ID}-service.loadbalancer.server.port=${PORT}"
