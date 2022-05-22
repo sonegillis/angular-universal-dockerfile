@@ -3,7 +3,16 @@ services:
   app:
     networks:
       - traefik
-
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dcgasoverflow-router.rule=Host(`${HOST}`)"
+      - "traefik.http.middlewares.dcgasoverflow-redirect-middleware.redirectscheme.scheme=https"
+      - "traefik.http.routers.dcgasoverflow-router.middleware=dcgaosverflow-redirect-middleware"
+      - "traefik.http.routers.dcgasoverflow-secure-router.rule=Host(`${HOST}`)"
+      - "traefik.http.routers.dcgasoverflow-secure-router.tls=true"
+      - "traefik.http.routers.dcgasoverflow-secure-router.tls.certresolver=lets-encrypt"
+      - "traefik.http.services.dcgasoverflow-service.loadbalancer.server.port=4000"
+      - "traefik.http.services.dcgasoverflow-secure-router.service=dcgasoverflow-service"
 networks:
   traefik:
     external: True
