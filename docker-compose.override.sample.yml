@@ -5,14 +5,17 @@ services:
       - traefik
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.dcgasoverflow-router.rule=Host(`${HOST}`)"
-      - "traefik.http.middlewares.dcgasoverflow-redirect-middleware.redirectscheme.scheme=https"
-      - "traefik.http.routers.dcgasoverflow-router.middleware=dcgaosverflow-redirect-middleware"
-      - "traefik.http.routers.dcgasoverflow-secure-router.rule=Host(`${HOST}`)"
-      - "traefik.http.routers.dcgasoverflow-secure-router.tls=true"
-      - "traefik.http.routers.dcgasoverflow-secure-router.tls.certresolver=lets-encrypt"
-      - "traefik.http.services.dcgasoverflow-service.loadbalancer.server.port=4000"
-      - "traefik.http.services.dcgasoverflow-secure-router.service=dcgasoverflow-service"
+      - "traefik.http.routers.${APP_ID}-router.rule=Host(`${HOST}`)"
+      - "traefik.http.routers.${APP_ID}-router.entrypoints=web"
+      - "traefik.http.middlewares.${APP_ID}-redirect-middleware.redirectscheme.scheme=https"
+      - "traefik.http.routers.${APP_ID}-router.middleware=${APP_ID}-redirect-middleware"
+      - "traefik.http.routers.${APP_ID}-secure-router.rule=Host(`${HOST}`)"
+      - "traefik.http.routers.${APP_ID}-secure-router.entrypoints=Host(`${HOST}`)"
+      - "traefik.http.routers.${APP_ID}-secure-router.tls=true"
+      - "traefik.http.routers.${APP_ID}-secure-router.tls.certresolver=lets-encrypt"
+      - "traefik.http.services.${APP_ID}-service.loadbalancer.server.port=${PORT}"
+      - "traefik.http.routers.${APP_ID}-secure-router.service=${APP_ID}-service"
+
 networks:
   traefik:
     external: True
