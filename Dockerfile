@@ -42,5 +42,7 @@ RUN npm i
 RUN ng build --prod
 RUN npm i -g pm2
 RUN npm run build:ssr
+RUN ls
+RUN pwd
 
 EXPOSE 4000
