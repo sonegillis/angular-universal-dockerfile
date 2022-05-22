@@ -43,4 +43,4 @@ RUN npm i -g pm2
 RUN npm run build:ssr
 
 EXPOSE 4000
-ENTRYPOINT ["pm2-runtime", "start", "dist/${PROJECT_NAME}/server/main.js", "/dev/null"]
+ENTRYPOINT ["pm2-runtime", "start", "/home/apps/$PROJECT_NAME/dist/${PROJECT_NAME}/server/main.js", "/dev/null"]
