@@ -1,6 +1,7 @@
 version: "3.7"
 services:
-  build: .
+  build:
+    context: .
   app:
     environment:
       - PROJECT_NAME=my-app
